@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace BarNerdGames.Transport
 {
-    public class RoadRenderer : MonoBehaviour
+    public class Route : MonoBehaviour
     {
         public Location start;
         public Location end;
@@ -14,6 +14,11 @@ namespace BarNerdGames.Transport
         private List<GameObject> roadSegments;
 
         [SerializeField] private GameObject roadTile;
+
+        // TODO: have list of vehicles
+        // TODO: AddVehicle()
+        // TODO: RemoveVehicle()
+        // TODO: Arrive()
 
         private void Awake()
         {
@@ -40,7 +45,7 @@ namespace BarNerdGames.Transport
             while (_segment != null)
             {
                 GameObject roadSegmentGFX = Instantiate(roadTile, _segment.Midpoint, Quaternion.Euler(0f, 0f, Vector2.SignedAngle(Vector2.right, _segment.Direction)), this.transform);
-                roadSegmentGFX.transform.localScale = new Vector3(_segment.Length, .1f, .1f);
+                roadSegmentGFX.transform.localScale = new Vector3(_segment.Length, roadSegmentGFX.transform.localScale.y, roadSegmentGFX.transform.localScale.z);
 
                 roadSegments.Add(roadSegmentGFX);
 

@@ -11,68 +11,84 @@ namespace BarNerdGames.Transport
 
         private List<RoadSegment> roadSegments;
 
+        public Vector2 Direction { get; private set; }
+
         public Road(Vector2 _start, Vector2 _end)
         {
-            // TODO: Check for _start = _end
-            // TODO: Also check for no waypoints. i.e. strictly vertical, or horiztonal
-
-            RoadSegment middleSegment;
-
-            float verticalDelta = _end.y - _start.y;
-            float horizontalDelta = _end.x - _start.x;
-
-            Debug.Log("vertical delta: " + verticalDelta);
-            Debug.Log("horizontal delta: " + horizontalDelta);
-
-            Vector2 _primaryDirection;
-            Vector2 _secondaryDirection;
-
-            // vertical road
-            if (Mathf.Abs(verticalDelta) > Mathf.Abs(horizontalDelta))
+            if (_start != _end)
             {
-                // going up or down
-                _primaryDirection = (verticalDelta > 0) ? Vector2.up : Vector2.down;
-                // going right or left
-                _secondaryDirection = (horizontalDelta > 0) ? Vector2.right : Vector2.left;
+                // TODO: Also check for no waypoints. i.e. strictly vertical, or horiztonal
+
+                RoadSegment middleSegment = null;
+
+                float signedVerticalDelta = _end.y - _start.y;
+                float signedHorizontalDelta = _end.x - _start.x;
+
+                float verticalDelta = Mathf.Abs(signedVerticalDelta);
+                float horizontalDelta = Mathf.Abs(signedHorizontalDelta);
+
+                Vector2 _primaryDirection;
+                Vector2 _secondaryDirection;
+
+                // vertical road
+                if (verticalDelta > horizontalDelta)
+                {
+                    // going up or down
+                    _primaryDirection = (signedVerticalDelta > 0) ? Vector2.up : Vector2.down;
+                    // going right or left
+                    _secondaryDirection = (signedHorizontalDelta > 0) ? Vector2.right : Vector2.left;
+                }
+                // horizontal road
+                else
+                {
+                    // going right or left
+                    _primaryDirection = (signedHorizontalDelta > 0) ? Vector2.right : Vector2.left;
+                    // going up or down
+                    _secondaryDirection = (signedVerticalDelta > 0) ? Vector2.up : Vector2.down;
+                }
+                Direction = _primaryDirection;
+
+                // strictly vertical or horizontal road
+                if (verticalDelta <= float.Epsilon || horizontalDelta <= float.Epsilon)
+                {
+                    Start = new RoadSegment(_start, _end, _primaryDirection);
+
+                    roadSegments = new List<RoadSegment>();
+                    roadSegments.Add(Start);
+                }
+                else
+                {
+                    Vector2 wayPointA = _start + Mathf.Abs(verticalDelta - horizontalDelta) / 2f * _primaryDirection;
+                    Vector2 wayPointB = _end - Mathf.Abs(verticalDelta - horizontalDelta) / 2f * _primaryDirection;
+
+                    Start = new RoadSegment(_start, wayPointA, _primaryDirection);
+                    middleSegment = new RoadSegment(wayPointA, wayPointB, _primaryDirection + _secondaryDirection);
+                    End = new RoadSegment(wayPointB, _end, _primaryDirection);
+
+                    Start.Next = middleSegment;
+                    middleSegment.Previous = Start;
+                    middleSegment.Next = End;
+                    End.Previous = middleSegment;
+
+                    roadSegments = new List<RoadSegment>();
+                    roadSegments.Add(Start);
+                    roadSegments.Add(middleSegment);
+                    roadSegments.Add(End);
+                }
+
+                Debug.Log("Start.Start: " + Start.Start);
+                Debug.Log("Start.End: " + Start.End);
+                if (middleSegment != null)
+                {
+                    Debug.Log("Waypoint.Start: " + middleSegment.Start);
+                    Debug.Log("Waypoint.End: " + middleSegment.End);
+                }
+                if (End != null)
+                {
+                    Debug.Log("End.Start: " + End.Start);
+                    Debug.Log("End.End: " + End.End);
+                }
             }
-            // horizontal road
-            else
-            {
-                // going right or left
-                _primaryDirection = (horizontalDelta > 0) ? Vector2.right : Vector2.left;
-                // going up or down
-                _secondaryDirection = (verticalDelta > 0) ? Vector2.up : Vector2.down;
-            }
-
-            Debug.Log("Primary Direction: " + _primaryDirection);
-            Debug.Log("Secondary Direction: " + _secondaryDirection);
-            Debug.Log("Tertiary Direction: " + (_primaryDirection + _secondaryDirection));
-            Vector2 wayPointA = _start + (Mathf.Abs(verticalDelta) - Mathf.Abs(horizontalDelta)) / 2f * _primaryDirection;
-            Vector2 wayPointB = _end - (Mathf.Abs(verticalDelta) - Mathf.Abs(horizontalDelta)) / 2f * _primaryDirection;
-            Debug.Log("WaypointA: " + wayPointA);
-            Debug.Log("WaypointB: " + wayPointB);
-
-
-            Start = new RoadSegment(_start, wayPointA, _primaryDirection);
-            middleSegment = new RoadSegment(wayPointA, wayPointB, _primaryDirection + _secondaryDirection);
-            End = new RoadSegment(wayPointB, _end, _primaryDirection);
-
-            Start.Next = middleSegment;
-            middleSegment.Previous = Start;
-            middleSegment.Next = End;
-            End.Previous = middleSegment;
-
-            roadSegments = new List<RoadSegment>();
-            roadSegments.Add(Start);
-            roadSegments.Add(middleSegment);
-            roadSegments.Add(End);
-
-            Debug.Log("Start.Start: " + Start.Start);
-            Debug.Log("Start.End: " + Start.End);
-            Debug.Log("Waypoint.Start: " + middleSegment.Start);
-            Debug.Log("Waypoint.End: " + middleSegment.End);
-            Debug.Log("End.Start: " + End.Start);
-            Debug.Log("End.End: " + End.End);
         }
     }
 }

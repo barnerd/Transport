@@ -10,5 +10,6 @@ namespace BarNerdGames.Transport
         new public string name;
 
         public Sprite image;
+        public Color color;
     }
 }
