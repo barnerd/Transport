@@ -13,3 +13,5 @@ MonoBehaviour:
   m_Name: stone
   m_EditorClassIdentifier: 
   name: stone
+  image: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  color: {r: 0.5, g: 0.5, b: 0.5, a: 1}

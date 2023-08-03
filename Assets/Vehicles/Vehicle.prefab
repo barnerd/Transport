@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8578915463020555449}
   - component: {fileID: 8033461428162801654}
+  - component: {fileID: 4795621512562490887}
   m_Layer: 0
   m_Name: Vehicle
   m_TagString: Untagged
@@ -30,7 +31,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &8033461428162801654
 SpriteRenderer:
@@ -84,3 +85,17 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &4795621512562490887
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3413935565452010518}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fb4f29de632e40838c3cdb245928132, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LocationThreshold: 0.001
+  homeTown: {fileID: 0}

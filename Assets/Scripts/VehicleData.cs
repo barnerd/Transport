@@ -9,7 +9,11 @@ namespace BarNerdGames.Transport
     {
         new public string name;
 
-        public float capacity;
+        public int capacity;
+
+        [Header("Speed")]
         public float travelingSpeed;
+        public float loadingSpeed;
+        public float unloadingSpeed;
     }
 }

@@ -17,8 +17,6 @@ namespace BarNerdGames.Transport
         {
             if (_start != _end)
             {
-                // TODO: Also check for no waypoints. i.e. strictly vertical, or horiztonal
-
                 RoadSegment middleSegment = null;
 
                 float signedVerticalDelta = _end.y - _start.y;
@@ -74,19 +72,6 @@ namespace BarNerdGames.Transport
                     roadSegments.Add(Start);
                     roadSegments.Add(middleSegment);
                     roadSegments.Add(End);
-                }
-
-                Debug.Log("Start.Start: " + Start.Start);
-                Debug.Log("Start.End: " + Start.End);
-                if (middleSegment != null)
-                {
-                    Debug.Log("Waypoint.Start: " + middleSegment.Start);
-                    Debug.Log("Waypoint.End: " + middleSegment.End);
-                }
-                if (End != null)
-                {
-                    Debug.Log("End.Start: " + End.Start);
-                    Debug.Log("End.End: " + End.End);
                 }
             }
         }
