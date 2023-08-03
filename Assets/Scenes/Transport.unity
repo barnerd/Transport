@@ -492,6 +492,38 @@ PrefabInstance:
       propertyPath: detailsUI
       value: 
       objectReference: {fileID: 1218223885}
+    - target: {fileID: 7957973176805962561, guid: 1e764239103b741ffb7b5f2020096a09, type: 3}
+      propertyPath: storedResources._serializedList.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7957973176805962561, guid: 1e764239103b741ffb7b5f2020096a09, type: 3}
+      propertyPath: desiredResources._serializedList.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7957973176805962561, guid: 1e764239103b741ffb7b5f2020096a09, type: 3}
+      propertyPath: storedResources._serializedList.Array.data[0].Key
+      value: 
+      objectReference: {fileID: 11400000, guid: 81b823d23784047e9b60bb3929b0294d, type: 2}
+    - target: {fileID: 7957973176805962561, guid: 1e764239103b741ffb7b5f2020096a09, type: 3}
+      propertyPath: desiredResources._serializedList.Array.data[0].Key
+      value: 
+      objectReference: {fileID: 11400000, guid: 81b823d23784047e9b60bb3929b0294d, type: 2}
+    - target: {fileID: 7957973176805962561, guid: 1e764239103b741ffb7b5f2020096a09, type: 3}
+      propertyPath: desiredResources._serializedList.Array.data[1].Key
+      value: 
+      objectReference: {fileID: 11400000, guid: ed988b3c0f8304a5fbcd61598a914d02, type: 2}
+    - target: {fileID: 7957973176805962561, guid: 1e764239103b741ffb7b5f2020096a09, type: 3}
+      propertyPath: storedResources._serializedList.Array.data[0].Value
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7957973176805962561, guid: 1e764239103b741ffb7b5f2020096a09, type: 3}
+      propertyPath: desiredResources._serializedList.Array.data[0].Value
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7957973176805962561, guid: 1e764239103b741ffb7b5f2020096a09, type: 3}
+      propertyPath: desiredResources._serializedList.Array.data[1].Value
+      value: -1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -719,17 +751,29 @@ PrefabInstance:
       propertyPath: m_Name
       value: Vehicle
       objectReference: {fileID: 0}
+    - target: {fileID: 4795621512562490887, guid: 7af4e121d65924dc5adb0877ac5cb09e, type: 3}
+      propertyPath: data
+      value: 
+      objectReference: {fileID: 11400000, guid: d4dcc78a8e803468fa5aaa3d9023d2a4, type: 2}
+    - target: {fileID: 4795621512562490887, guid: 7af4e121d65924dc5adb0877ac5cb09e, type: 3}
+      propertyPath: route
+      value: 
+      objectReference: {fileID: 87474805}
+    - target: {fileID: 4795621512562490887, guid: 7af4e121d65924dc5adb0877ac5cb09e, type: 3}
+      propertyPath: homeTown
+      value: 
+      objectReference: {fileID: 2100186526}
     - target: {fileID: 8578915463020555449, guid: 7af4e121d65924dc5adb0877ac5cb09e, type: 3}
       propertyPath: m_RootOrder
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8578915463020555449, guid: 7af4e121d65924dc5adb0877ac5cb09e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.29
+      value: -5.11
       objectReference: {fileID: 0}
     - target: {fileID: 8578915463020555449, guid: 7af4e121d65924dc5adb0877ac5cb09e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.06
+      value: 2.72
       objectReference: {fileID: 0}
     - target: {fileID: 8578915463020555449, guid: 7af4e121d65924dc5adb0877ac5cb09e, type: 3}
       propertyPath: m_LocalPosition.z
@@ -737,7 +781,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8578915463020555449, guid: 7af4e121d65924dc5adb0877ac5cb09e, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 8578915463020555449, guid: 7af4e121d65924dc5adb0877ac5cb09e, type: 3}
       propertyPath: m_LocalRotation.x
@@ -749,7 +793,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8578915463020555449, guid: 7af4e121d65924dc5adb0877ac5cb09e, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 8578915463020555449, guid: 7af4e121d65924dc5adb0877ac5cb09e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -890,9 +934,17 @@ PrefabInstance:
       value: Stone Quarry
       objectReference: {fileID: 0}
     - target: {fileID: 6918048155013949700, guid: 8f6826435b66d48d5b4d841370969067, type: 3}
+      propertyPath: capacity
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6918048155013949700, guid: 8f6826435b66d48d5b4d841370969067, type: 3}
       propertyPath: detailsUI
       value: 
       objectReference: {fileID: 1218223885}
+    - target: {fileID: 6918048155013949700, guid: 8f6826435b66d48d5b4d841370969067, type: 3}
+      propertyPath: producing
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6918048155013949700, guid: 8f6826435b66d48d5b4d841370969067, type: 3}
       propertyPath: producedResources.Array.size
       value: 1
@@ -902,9 +954,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 81b823d23784047e9b60bb3929b0294d, type: 2}
     - target: {fileID: 6918048155013949700, guid: 8f6826435b66d48d5b4d841370969067, type: 3}
+      propertyPath: storedResources._serializedList.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6918048155013949700, guid: 8f6826435b66d48d5b4d841370969067, type: 3}
       propertyPath: producedResources._serializedList.Array.size
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6918048155013949700, guid: 8f6826435b66d48d5b4d841370969067, type: 3}
+      propertyPath: storedResources._serializedList.Array.data[0].Key
+      value: 
+      objectReference: {fileID: 11400000, guid: 81b823d23784047e9b60bb3929b0294d, type: 2}
     - target: {fileID: 6918048155013949700, guid: 8f6826435b66d48d5b4d841370969067, type: 3}
       propertyPath: producedResources._serializedList.Array.data[0].Key
       value: 

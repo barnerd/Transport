@@ -71,7 +71,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1959333177
-  m_SortingLayer: 4
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 0.027407303, g: 0, b: 0.6226415, a: 1}
@@ -161,7 +161,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1959333177
-  m_SortingLayer: 4
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &1036788688873123331
@@ -305,9 +305,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   desiredResources:
     _serializedList: []
-  producedResources:
+  storedResources:
     _serializedList: []
+  capacity: 50
   detailsUI: {fileID: 0}
+  producing: 0
 --- !u!61 &250010125565476882
 BoxCollider2D:
   m_ObjectHideFlags: 0

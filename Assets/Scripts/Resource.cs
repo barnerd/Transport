@@ -9,6 +9,8 @@ namespace BarNerdGames.Transport
     {
         new public string name;
 
+        public float generationRate;
+
         public Sprite image;
         public Color color;
     }

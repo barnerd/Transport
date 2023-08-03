@@ -9,10 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5ad3523dd19af477d9d74d7c08eb54a9, type: 3}
-  m_Name: stone
+  m_Script: {fileID: 11500000, guid: f1fc52f9766e043b28f012aac3fab8e3, type: 3}
+  m_Name: Cart
   m_EditorClassIdentifier: 
-  name: stone
-  generationRate: 0.33
-  image: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  name: Cart
+  capacity: 5
+  travelingSpeed: 1
+  loadingSpeed: 1
+  unloadingSpeed: 1

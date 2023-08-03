@@ -97,5 +97,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fb4f29de632e40838c3cdb245928132, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LocationThreshold: 0.001
+  data: {fileID: 0}
+  LocationThreshold: 0.115
   homeTown: {fileID: 0}
+  route: {fileID: 0}
+  currentState: 0

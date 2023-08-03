@@ -6,16 +6,16 @@ namespace BarNerdGames.Transport
 {
     public class Vehicle : MonoBehaviour
     {
-        private VehicleData data;
+        [SerializeField] private VehicleData data;
         [SerializeField] public float LocationThreshold;
 
         public Town homeTown; // should not be null
-        public Route route { get; private set; } // can be null
+        public Route route; // can be null
         private Route.TravelingDirection travelingDirection;
         private Vector2 direction;
         private RoadSegment currentSegement;
         private Location currentLocation; // can be null
-        public State currentState { get; private set; }
+        public State currentState;
 
         public enum State
         {
@@ -69,11 +69,14 @@ namespace BarNerdGames.Transport
                 // wait until you get back to town?
             }
 
+            // TODO: Set position
+
             route = _route;
             travelingDirection = Route.TravelingDirection.Forwards;
             if (_route != null)
             {
                 currentSegement = _route.Road.Start;
+                SetDirection();
                 currentState = State.Moving;
             }
             else
@@ -85,6 +88,7 @@ namespace BarNerdGames.Transport
 
         private void UnloadResource()
         {
+            Debug.Log("Unloading resources");
             // TODO: add timer so it's 1 per timer
 
             // Deliver Resources if possible
@@ -102,6 +106,7 @@ namespace BarNerdGames.Transport
 
         private void LoadResource()
         {
+            Debug.Log("Loading resources");
             // TODO: add timer so it's 1 per timer
 
             // Collect Resources if possible
@@ -124,66 +129,42 @@ namespace BarNerdGames.Transport
             }
         }
 
-        /*private int CollectResources(Resource _resource, int _amount)
-        {
-            int _remainingCapacity = data.capacity - resources.Count;
-            int _amountAdded = Mathf.Min(_remainingCapacity, _amount);
-
-            for (int i = 0; i < _amountAdded; i++)
-            {
-                resources.Add(_resource);
-            }
-
-            return _amountAdded;
-        }*/
-
         private void Move()
         {
+            // TODO: this is a hack. SetRoute should be called by now
+            if (currentSegement == null && route != null)
+            {
+                SetRoute(route);
+            }
+
             // check if at segment end
-            if (Vector2.Distance(transform.position, currentSegement.End) < LocationThreshold)
+            Vector2 segmentEnd = (travelingDirection == Route.TravelingDirection.Forwards) ? currentSegement.End : currentSegement.Start;
+            if (Vector2.Distance(transform.position, segmentEnd) < LocationThreshold)
             {
                 // go to next segment
-                currentSegement = (travelingDirection == Route.TravelingDirection.Forwards) ? currentSegement.Next : currentSegement.Previous;
+                RoadSegment nextSegement = (travelingDirection == Route.TravelingDirection.Forwards) ? currentSegement.Next : currentSegement.Previous; ;
 
                 // finished traversing the route
-                if (currentSegement == null)
+                if (nextSegement == null)
                 {
                     currentLocation = (travelingDirection == Route.TravelingDirection.Forwards) ? route.end : route.start;
 
-                    Turnaround();
+                    // Turn around
+                    travelingDirection = (Route.TravelingDirection)((int)travelingDirection * -1);
+                    SetDirection();
+
                     currentState = State.Unloading;
                     return;
                 }
                 else
                 {
+                    currentSegement = nextSegement;
                     SetDirection();
                 }
             }
 
             // move in that direction f(vehicle.movingSpeed, road.movingSpeed)
             transform.position += data.travelingSpeed * Time.deltaTime * (Vector3)direction;
-        }
-
-        private void Turnaround()
-        {
-            if (travelingDirection == Route.TravelingDirection.Forwards)
-            {
-                travelingDirection = Route.TravelingDirection.Backwards;
-                if (currentSegement == null)
-                {
-                    currentSegement = route.Road.End;
-                }
-            }
-            else
-            {
-                travelingDirection = Route.TravelingDirection.Forwards;
-                if (currentSegement == null)
-                {
-                    currentSegement = route.Road.Start;
-                }
-            }
-
-            SetDirection();
         }
 
         private void SetDirection()

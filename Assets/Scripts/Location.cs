@@ -9,9 +9,9 @@ namespace BarNerdGames.Transport
     public class Location : MonoBehaviour
     {
         [SerializedDictionary("Resource", "Amount")] public SerializedDictionary<Resource, int> desiredResources;
-        [SerializedDictionary("Resource", "Amount")] public SerializedDictionary<Resource, int> storedResources;
+        [SerializedDictionary("Resource", "Amount")] public SerializedDictionary<Resource, float> storedResources;
 
-        [SerializeField] private int capacity;
+        [SerializeField] protected int capacity;
 
         [SerializeField] private LocationDetailsUI detailsUI;
 
@@ -36,7 +36,7 @@ namespace BarNerdGames.Transport
 
         public bool UnloadResource(Resource _resource)
         {
-            if (!desiredResources.ContainsKey(_resource))
+            if (!desiredResources.ContainsKey(_resource) || desiredResources[_resource] == 0)
             {
                 return false;
             }
@@ -49,7 +49,7 @@ namespace BarNerdGames.Transport
                 }
                 else
                 {
-                    desiredResources[_resource]--;
+                    if (desiredResources[_resource] > 0) desiredResources[_resource]--;
                     storedResources[_resource]++;
                 }
             }
@@ -63,13 +63,13 @@ namespace BarNerdGames.Transport
 
         public Resource LoadResource(List<Resource> _desiredResources)
         {
-            if(_desiredResources.Count < storedResources.Count)
+            if (_desiredResources.Count < storedResources.Count)
             {
                 foreach (var _resource in _desiredResources)
                 {
                     if (storedResources.ContainsKey(_resource))
                     {
-                        if(storedResources[_resource] > 0)
+                        if (storedResources[_resource] > 0)
                         {
                             storedResources[_resource]--;
                             return _resource;
@@ -79,14 +79,14 @@ namespace BarNerdGames.Transport
             }
             else
             {
-                foreach (var _resource in storedResources)
+                foreach (var _resource in storedResources.Keys)
                 {
-                    if (_desiredResources.Contains(_resource.Key))
+                    if (_desiredResources.Contains(_resource))
                     {
-                        if (storedResources[_resource.Key] > 0)
+                        if (storedResources[_resource] > 0)
                         {
-                            storedResources[_resource.Key]--;
-                            return _resource.Key;
+                            storedResources[_resource]--;
+                            return _resource;
                         }
                     }
                 }

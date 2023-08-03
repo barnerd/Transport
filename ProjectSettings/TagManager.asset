@@ -47,9 +47,9 @@ TagManager:
   - name: Roads
     uniqueID: 3275156695
     locked: 0
-  - name: Vehicles
-    uniqueID: 1032537085
-    locked: 0
   - name: Locations
     uniqueID: 1959333177
+    locked: 0
+  - name: Vehicles
+    uniqueID: 1032537085
     locked: 0
