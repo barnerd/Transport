@@ -15,6 +15,10 @@ namespace BarNerdGames.Transport
 
         [SerializeField] private LocationDetailsUI detailsUI;
 
+        [SerializeField] private GameObject routePrefab;
+
+        public static bool RouteBuilding;
+
         // Start is called before the first frame update
         void Start()
         {
@@ -29,9 +33,33 @@ namespace BarNerdGames.Transport
 
         void OnMouseDown()
         {
-            Debug.Log("Sprite Clicked: " + name);
-            detailsUI.UpdateLocationDetails(name);
-            detailsUI.ShowLocationDetails(true);
+            if (Location.RouteBuilding)
+            {
+                detailsUI.FinishRoute(this);
+            }
+            else
+            {
+                detailsUI.UpdateLocationDetails(this);
+                detailsUI.ShowLocationDetails(true);
+            }
+        }
+
+        public void BuildRouteTo(Location _end)
+        {
+            // TODO: check for duplicate or overlapping route
+
+            GameObject routeGO = Instantiate(routePrefab);
+            Route route = routeGO.GetComponent<Route>();
+
+            route.SetEndPoints(this, _end);
+
+            // TODO: check for resources for route cost
+            var resourceCost = route.CurrentRoadLevel.resourceCost;
+            int cost = Mathf.RoundToInt(route.Length);
+
+            // TODO: add to this Locations set of routes
+
+            RouteBuilding = false;
         }
 
         public bool UnloadResource(Resource _resource)

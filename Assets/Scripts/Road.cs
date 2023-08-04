@@ -12,9 +12,12 @@ namespace BarNerdGames.Transport
         private List<RoadSegment> roadSegments;
 
         public Vector2 Direction { get; private set; }
+        public float Length { get; private set; }
 
         public Road(Vector2 _start, Vector2 _end)
         {
+            Length = 0f;
+
             if (_start != _end)
             {
                 RoadSegment middleSegment = null;
@@ -52,7 +55,7 @@ namespace BarNerdGames.Transport
                     Start = new RoadSegment(_start, _end, _primaryDirection);
 
                     roadSegments = new List<RoadSegment>();
-                    roadSegments.Add(Start);
+                    AddSegment(Start);
                 }
                 else
                 {
@@ -69,11 +72,17 @@ namespace BarNerdGames.Transport
                     End.Previous = middleSegment;
 
                     roadSegments = new List<RoadSegment>();
-                    roadSegments.Add(Start);
-                    roadSegments.Add(middleSegment);
-                    roadSegments.Add(End);
+                    AddSegment(Start);
+                    AddSegment(middleSegment);
+                    AddSegment(End);
                 }
             }
+        }
+
+        private void AddSegment(RoadSegment _segment)
+        {
+            roadSegments.Add(_segment);
+            Length += _segment.Length;
         }
     }
 }

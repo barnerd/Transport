@@ -15,7 +15,12 @@ namespace BarNerdGames.Transport
         public Location start;
         public Location end;
 
+        public float Length { get { return Road.Length; } }
+
         public Road Road { get; private set; }
+
+        [SerializeField] public RoadLevelData BaseLevel;
+        [SerializeField] public RoadLevelData CurrentRoadLevel { get; private set; }
 
         private List<GameObject> roadSegments;
 
@@ -27,19 +32,38 @@ namespace BarNerdGames.Transport
         {
             roadSegments = new List<GameObject>();
             vehicles = new List<Vehicle>();
+
+            CurrentRoadLevel = BaseLevel;
         }
 
         // Start is called before the first frame update
         void Start()
         {
-            Road = new Road(start.transform.position, end.transform.position);
-            InitRoadSegments();
+            //Road = new Road(start.transform.position, end.transform.position);
+            //InitRoadSegments();
         }
 
         // Update is called once per frame
         void Update()
         {
 
+        }
+
+        public void LevelUp()
+        {
+            if(CurrentRoadLevel.nextLevel != null)
+            {
+                CurrentRoadLevel = CurrentRoadLevel.nextLevel;
+            }
+        }
+
+        public void SetEndPoints(Location _start, Location _end)
+        {
+            start = _start;
+            end = _end;
+
+            Road = new Road(start.transform.position, end.transform.position);
+            InitRoadSegments();
         }
 
         private void InitRoadSegments()

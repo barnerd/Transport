@@ -309,6 +309,7 @@ MonoBehaviour:
     _serializedList: []
   capacity: 50
   detailsUI: {fileID: 0}
+  routePrefab: {fileID: 5515106265654869006, guid: a1e20e0a6a8374c608c426e3648aed26, type: 3}
   producing: 0
 --- !u!61 &250010125565476882
 BoxCollider2D:

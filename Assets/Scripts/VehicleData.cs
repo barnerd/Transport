@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace BarNerdGames.Transport
 {
-    [CreateAssetMenu(fileName = "New Vehicle", menuName = "Vehicle/Vehicle")]
+    [CreateAssetMenu(fileName = "New Vehicle", menuName = "Transport/Vehicle")]
     public class VehicleData : ScriptableObject
     {
         new public string name;
