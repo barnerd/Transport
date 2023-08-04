@@ -8,16 +8,39 @@ namespace BarNerdGames.Transport
 {
     public class Location : MonoBehaviour
     {
+        [Header("Resources")]
         [SerializedDictionary("Resource", "Amount")] public SerializedDictionary<Resource, int> desiredResources;
         [SerializedDictionary("Resource", "Amount")] public SerializedDictionary<Resource, float> storedResources;
+        public List<Resource> producingResources;
 
         [SerializeField] protected int capacity;
 
+        [Header("Routes")]
+        public Transform routesParent;
+        public List<Route> routes;
+
+        [Header("Vehicles")]
+        public Transform vehiclesParent;
+        public List<Vehicle> vehicles;
+
+        [Header("UI")]
         [SerializeField] private LocationDetailsUI detailsUI;
 
+        [Header("Prefabs")]
         [SerializeField] private GameObject routePrefab;
+        [SerializeField] private GameObject vehiclePrefab;
 
         public static bool RouteBuilding;
+
+        void Awake()
+        {
+            if (desiredResources == null) desiredResources = new SerializedDictionary<Resource, int>();
+            if (storedResources == null) storedResources = new SerializedDictionary<Resource, float>();
+            if (producingResources == null) producingResources = new List<Resource>();
+
+            if (routes == null) routes = new List<Route>();
+            if (vehicles == null) vehicles = new List<Vehicle>();
+        }
 
         // Start is called before the first frame update
         void Start()
@@ -28,7 +51,10 @@ namespace BarNerdGames.Transport
         // Update is called once per frame
         void Update()
         {
-
+            if (producingResources != null && producingResources.Count > 0)
+            {
+                ProduceResources();
+            }
         }
 
         void OnMouseDown()
@@ -44,26 +70,82 @@ namespace BarNerdGames.Transport
             }
         }
 
+        private void ProduceResources()
+        {
+            foreach (var _resource in producingResources)
+            {
+                storedResources[_resource] += _resource.generationRate * Time.deltaTime;
+
+                if (storedResources[_resource] > capacity)
+                {
+                    storedResources[_resource] = capacity;
+                }
+            }
+        }
+
         public void BuildRouteTo(Location _end)
         {
             // TODO: check for duplicate or overlapping route
 
-            GameObject routeGO = Instantiate(routePrefab);
-            Route route = routeGO.GetComponent<Route>();
+            GameObject _routeGO = Instantiate(routePrefab, routesParent);
+            Route _route = _routeGO.GetComponent<Route>();
 
-            route.SetEndPoints(this, _end);
+            _route.SetEndPoints(this, _end);
 
             // TODO: check for resources for route cost
-            var resourceCost = route.CurrentRoadLevel.resourceCost;
-            int cost = Mathf.RoundToInt(route.Length);
+            var _resourceCost = _route.CurrentRoadLevel.resourceCost;
+            float _numUnits = _route.Length;
+            bool _haveCosts = CheckCosts(_resourceCost, _numUnits);
 
-            // TODO: add to this Locations set of routes
+            // add to this Location's set of routes
+            routes.Add(_route);
 
             RouteBuilding = false;
         }
 
+        public void BuildVehicle(VehicleData _vehicle)
+        {
+            // Check Costs
+            if (CheckCosts(_vehicle.resourceCost))
+            {
+                // Spend Costs
+                SpendCosts(_vehicle.resourceCost);
+
+                // Build Vehicle
+                GameObject _vehicleGO = Instantiate(vehiclePrefab, vehiclesParent);
+                Vehicle _newVehicle = _vehicleGO.GetComponent<Vehicle>();
+
+                // Add to list of Vehicles
+                vehicles.Add(_newVehicle);
+
+                // TODO: Hide vehicle
+            }
+        }
+
+        public bool CheckCosts(Dictionary<Resource, int> _costsPerUnit, float _numUnits = 1f)
+        {
+            foreach (var _resource in _costsPerUnit.Keys.ToList())
+            {
+                if (storedResources[_resource] < Mathf.RoundToInt(_costsPerUnit[_resource] * _numUnits))
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        public void SpendCosts(Dictionary<Resource, int> _costsPerUnit, float _numUnits = 1f)
+        {
+            foreach (var _resource in _costsPerUnit.Keys.ToList())
+            {
+                storedResources[_resource] -= Mathf.RoundToInt(_costsPerUnit[_resource] * _numUnits);
+            }
+        }
+
         public bool UnloadResource(Resource _resource)
         {
+            // I don't want this resource, or I don't want anymore of it
             if (!desiredResources.ContainsKey(_resource) || desiredResources[_resource] == 0)
             {
                 return false;
@@ -71,16 +153,19 @@ namespace BarNerdGames.Transport
 
             if (storedResources.ContainsKey(_resource))
             {
+                // I can't hold anymore of this resource
                 if (storedResources[_resource] >= capacity)
                 {
                     return false;
                 }
                 else
                 {
+                    // if I want a finite amount, reduce desire. -1 is infinite desire
                     if (desiredResources[_resource] > 0) desiredResources[_resource]--;
                     storedResources[_resource]++;
                 }
             }
+            // first time storing this resource
             else
             {
                 storedResources.Add(_resource, 1);

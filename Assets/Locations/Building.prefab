@@ -84,6 +84,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &3424868607532924105
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2216167675033825279}
+  m_Layer: 9
+  m_Name: Vehicles
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2216167675033825279
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3424868607532924105}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 56619475563190618}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3733230324312382394
 GameObject:
   m_ObjectHideFlags: 0
@@ -288,6 +319,8 @@ Transform:
   m_Children:
   - {fileID: 5697979028785222455}
   - {fileID: 7574363250089825370}
+  - {fileID: 309448810837732773}
+  - {fileID: 2216167675033825279}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -307,10 +340,15 @@ MonoBehaviour:
     _serializedList: []
   storedResources:
     _serializedList: []
+  producingResources: []
   capacity: 50
+  routesParent: {fileID: 309448810837732773}
+  routes: []
+  vehiclesParent: {fileID: 2216167675033825279}
+  vehicles: []
   detailsUI: {fileID: 0}
   routePrefab: {fileID: 5515106265654869006, guid: a1e20e0a6a8374c608c426e3648aed26, type: 3}
-  producing: 0
+  vehiclePrefab: {fileID: 3413935565452010518, guid: 7af4e121d65924dc5adb0877ac5cb09e, type: 3}
 --- !u!61 &250010125565476882
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -356,3 +394,34 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.7385927, y: 0.7696861}
   m_EdgeRadius: 0
+--- !u!1 &6312061916893061801
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 309448810837732773}
+  m_Layer: 8
+  m_Name: Routes
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &309448810837732773
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6312061916893061801}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 56619475563190618}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

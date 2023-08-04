@@ -12,6 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4cc12c5ff6ce4b8594c19a083e9457a, type: 3}
   m_Name: Road - Level 1
   m_EditorClassIdentifier: 
+  name: Level 1
   resourceCost:
-    _serializedList: []
+    _serializedList:
+    - Key: {fileID: 11400000, guid: 81b823d23784047e9b60bb3929b0294d, type: 2}
+      Value: 1
   nextLevel: {fileID: 0}

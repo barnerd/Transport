@@ -6,7 +6,7 @@ namespace BarNerdGames.Transport
 {
     public class Vehicle : MonoBehaviour
     {
-        [SerializeField] private VehicleData data;
+        public VehicleData data;
         [SerializeField] public float LocationThreshold;
 
         public Town homeTown; // should not be null
