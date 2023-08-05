@@ -66,7 +66,7 @@ namespace BarNerdGames.Transport
             else
             {
                 detailsUI.UpdateLocationDetails(this);
-                detailsUI.ShowLocationDetails(true);
+                detailsUI.ShowUIPanel(true);
             }
         }
 

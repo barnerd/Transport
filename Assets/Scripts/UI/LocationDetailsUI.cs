@@ -39,7 +39,7 @@ public class LocationDetailsUI : MonoBehaviour
 
     }
 
-    public void ShowLocationDetails(bool _show = true)
+    public void ShowUIPanel(bool _show = true)
     {
         uiPanel.gameObject.SetActive(_show);
     }
