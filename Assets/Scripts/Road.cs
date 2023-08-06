@@ -79,6 +79,10 @@ namespace BarNerdGames.Transport
             }
         }
 
+        /// <summary>
+        /// Helper function for adding a segment to this road
+        /// </summary>
+        /// <param name="_segment">which segment to add</param>
         private void AddSegment(RoadSegment _segment)
         {
             roadSegments.Add(_segment);

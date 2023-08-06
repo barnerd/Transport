@@ -54,6 +54,10 @@ namespace BarNerdGames.Transport
             }
         }
 
+        /// <summary>
+        /// Set which route this vehicle is on
+        /// </summary>
+        /// <param name="_route">the route</param>
         public void SetRoute(Route _route)
         {
             // if route != null, then clear previous info
@@ -80,6 +84,9 @@ namespace BarNerdGames.Transport
             }
         }
 
+        /// <summary>
+        /// Unload a resource to the current Location
+        /// </summary>
         private void UnloadResource()
         {
             Debug.Log("Unloading resources");
@@ -98,6 +105,9 @@ namespace BarNerdGames.Transport
             currentState = State.Loading;
         }
 
+        /// <summary>
+        /// Load a resource to the current Location
+        /// </summary>
         private void LoadResource()
         {
             Debug.Log("Loading resources");
@@ -123,6 +133,9 @@ namespace BarNerdGames.Transport
             }
         }
 
+        /// <summary>
+        /// Move this vehicle along the route that it's on
+        /// </summary>
         private void Move()
         {
             // TODO: this is a hack. SetRoute should be called by now
@@ -161,6 +174,9 @@ namespace BarNerdGames.Transport
             transform.position += data.travelingSpeed * Time.deltaTime * (Vector3)direction;
         }
 
+        /// <summary>
+        /// Helper function for changing the direction and updating the graphics.
+        /// </summary>
         private void SetDirection()
         {
             direction = currentSegement.Direction * (int)travelingDirection;

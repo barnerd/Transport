@@ -36,6 +36,9 @@ namespace BarNerdGames.Transport
             CurrentRoadLevel = BaseLevel;
         }
 
+        /// <summary>
+        /// Level this route up to the next level
+        /// </summary>
         public void LevelUp()
         {
             if(CurrentRoadLevel.nextLevel != null)
@@ -44,6 +47,11 @@ namespace BarNerdGames.Transport
             }
         }
 
+        /// <summary>
+        /// Set the 2 end points of this route, and build a road inbetween
+        /// </summary>
+        /// <param name="_start">The start Location</param>
+        /// <param name="_end">The end Location</param>
         public void SetEndPoints(Location _start, Location _end)
         {
             start = _start;
@@ -53,6 +61,9 @@ namespace BarNerdGames.Transport
             InitRoadSegments();
         }
 
+        /// <summary>
+        /// Create the graphics for the road segements
+        /// </summary>
         private void InitRoadSegments()
         {
             RoadSegment _segment = Road.Start;
@@ -68,16 +79,30 @@ namespace BarNerdGames.Transport
             }
         }
 
+        /// <summary>
+        /// Add a vehicle to this route
+        /// </summary>
+        /// <param name="_vehicle">which vehicle to add</param>
         public void AddVehicle(Vehicle _vehicle)
         {
-            vehicles.Add(_vehicle);
-            _vehicle.SetRoute(this);
+            if (!vehicles.Contains(_vehicle))
+            {
+                vehicles.Add(_vehicle);
+                _vehicle.SetRoute(this);
+            }
         }
 
+        /// <summary>
+        /// Remove a vehicle to this route
+        /// </summary>
+        /// <param name="_vehicle">which vehicle to remove</param>
         public void RemoveVehicle(Vehicle _vehicle)
         {
-            vehicles.Remove(_vehicle);
-            _vehicle.SetRoute(null);
+            if (vehicles.Contains(_vehicle))
+            {
+                vehicles.Remove(_vehicle);
+                _vehicle.SetRoute(null);
+            }
         }
 
         /*public Vector2 GetDirection(Vector2 _position, TravelingDirection _travelingDirection)

@@ -64,6 +64,9 @@ namespace BarNerdGames.Transport
             }
         }
 
+        /// <summary>
+        /// Produces resources
+        /// </summary>
         private void ProduceResources()
         {
             foreach (var _resource in producingResources)
@@ -77,6 +80,10 @@ namespace BarNerdGames.Transport
             }
         }
 
+        /// <summary>
+        /// Build a route from this Location to the provided Location
+        /// </summary>
+        /// <param name="_end">The end of the route built</param>
         public void BuildRouteTo(Location _end)
         {
             // TODO: check for duplicate or overlapping route
@@ -97,6 +104,10 @@ namespace BarNerdGames.Transport
             RouteBuilding = false;
         }
 
+        /// <summary>
+        /// Build a vehicle with the data provided and assign it to this Lcation
+        /// </summary>
+        /// <param name="_vehicle">The VehicleData to build this Vehicle from</param>
         public void BuildVehicle(VehicleData _vehicle)
         {
             // Check Costs
@@ -119,6 +130,12 @@ namespace BarNerdGames.Transport
             }
         }
 
+        /// <summary>
+        /// Checks to see if this Location can afford the cost, in resources per unit.
+        /// </summary>
+        /// <param name="_costsPerUnit">How much each unit costs</param>
+        /// <param name="_numUnits">How many units to check</param>
+        /// <returns>True, if this Location can afford the costs; otherwise, false</returns>
         public bool CheckCosts(Dictionary<Resource, int> _costsPerUnit, float _numUnits = 1f)
         {
             foreach (var _resource in _costsPerUnit.Keys.ToList())
@@ -132,6 +149,11 @@ namespace BarNerdGames.Transport
             return true;
         }
 
+        /// <summary>
+        /// Deduct the resource costs from storage
+        /// </summary>
+        /// <param name="_costsPerUnit">How much each unit costs</param>
+        /// <param name="_numUnits">How many units being deducted</param>
         public void SpendCosts(Dictionary<Resource, int> _costsPerUnit, float _numUnits = 1f)
         {
             foreach (var _resource in _costsPerUnit.Keys.ToList())
@@ -140,6 +162,11 @@ namespace BarNerdGames.Transport
             }
         }
 
+        /// <summary>
+        /// Add a resource to storage
+        /// </summary>
+        /// <param name="_resource">which resource to add</param>
+        /// <returns>true, if the resource is stored; otherwise, false</returns>
         public bool UnloadResource(Resource _resource)
         {
             // I don't want this resource, or I don't want anymore of it
@@ -171,6 +198,11 @@ namespace BarNerdGames.Transport
             return true;
         }
 
+        /// <summary>
+        /// Subtract a resource from storage
+        /// </summary>
+        /// <param name="_desiredResources">which resource to subtract</param>
+        /// <returns>true, if the resource is subtracted; otherwise, false</returns>
         public Resource LoadResource(List<Resource> _desiredResources)
         {
             if (_desiredResources.Count < storedResources.Count)
