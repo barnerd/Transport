@@ -36,19 +36,6 @@ namespace BarNerdGames.Transport
             CurrentRoadLevel = BaseLevel;
         }
 
-        // Start is called before the first frame update
-        void Start()
-        {
-            //Road = new Road(start.transform.position, end.transform.position);
-            //InitRoadSegments();
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
-        }
-
         public void LevelUp()
         {
             if(CurrentRoadLevel.nextLevel != null)

@@ -42,12 +42,6 @@ namespace BarNerdGames.Transport
             if (vehicles == null) vehicles = new List<Vehicle>();
         }
 
-        // Start is called before the first frame update
-        void Start()
-        {
-
-        }
-
         // Update is called once per frame
         void Update()
         {
@@ -114,6 +108,9 @@ namespace BarNerdGames.Transport
                 // Build Vehicle
                 GameObject _vehicleGO = Instantiate(vehiclePrefab, vehiclesParent);
                 Vehicle _newVehicle = _vehicleGO.GetComponent<Vehicle>();
+
+                _newVehicle.data = _vehicle;
+                _newVehicle.homeTown = this;
 
                 // Add to list of Vehicles
                 vehicles.Add(_newVehicle);

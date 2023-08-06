@@ -26,12 +26,6 @@ public class BuildVehicleUI : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     public void ShowUIPanel(bool _show = true)
     {
         uiPanel.gameObject.SetActive(_show);
@@ -45,7 +39,7 @@ public class BuildVehicleUI : MonoBehaviour
         }
 
         GameObject _newVehicle = Instantiate(vehicleUIPrefab, vehiclesParent);
-        _newVehicle.GetComponent<VehicleUI>().SetText(_new, false);
+        _newVehicle.GetComponent<VehicleUI>().SetText(_new, true, false);
     }
 
     public void Cancel()

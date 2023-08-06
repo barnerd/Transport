@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using BarNerdGames.Transport;
@@ -26,18 +24,6 @@ public class LocationDetailsUI : MonoBehaviour
     [Header("Prefabs")]
     [SerializeField] private GameObject routeUIPrefab;
     [SerializeField] private GameObject vehicleUIPrefab;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 
     public void ShowUIPanel(bool _show = true)
     {

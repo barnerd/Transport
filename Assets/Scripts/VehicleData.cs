@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using AYellowpaper.SerializedCollections;
 
@@ -20,6 +18,5 @@ namespace BarNerdGames.Transport
         [Header("Costs")]
         // cost per unit
         [SerializedDictionary("Resource", "Amount")] public SerializedDictionary<Resource, int> resourceCost;
-
     }
 }

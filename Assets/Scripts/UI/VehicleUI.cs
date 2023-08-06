@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using BarNerdGames.Transport;
@@ -13,18 +11,6 @@ public class VehicleUI : MonoBehaviour
 
     [SerializeField] public bool Selected { get; private set; }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     public void SetSelected(bool _selected = true)
     {
         if (Selected != _selected)
@@ -35,12 +21,12 @@ public class VehicleUI : MonoBehaviour
         }
     }
 
-    public void SetText(VehicleData _vehicle, bool _showOutput = true)
+    public void SetText(VehicleData _vehicle, bool _label = false, bool _showOutput = true)
     {
         SetName(_vehicle);
-        SetCapacity(_vehicle);
-        SetSpeed(_vehicle);
-        SetOutput(_vehicle, _showOutput);
+        SetCapacity(_vehicle, _label);
+        SetSpeed(_vehicle, _label);
+        SetOutput(_vehicle, _label, _showOutput);
     }
 
     public void SetName(VehicleData _vehicle)
@@ -48,19 +34,19 @@ public class VehicleUI : MonoBehaviour
         nameText.text = _vehicle.name;
     }
 
-    public void SetCapacity(VehicleData _vehicle)
+    public void SetCapacity(VehicleData _vehicle, bool _label = false)
     {
-        capacityText.text = _vehicle.capacity.ToString();
+        capacityText.text = ((_label) ? "Load: " : "") + _vehicle.capacity.ToString();
     }
 
-    public void SetSpeed(VehicleData _vehicle)
+    public void SetSpeed(VehicleData _vehicle, bool _label = false)
     {
-        speedText.text = _vehicle.travelingSpeed.ToString();
+        speedText.text = ((_label) ? "Spd: " : "") + _vehicle.travelingSpeed.ToString();
     }
 
-    public void SetOutput(VehicleData _vehicle, bool _showOutput = true)
+    public void SetOutput(VehicleData _vehicle, bool _label = false, bool _showOutput = true)
     {
-        outputText.text = (_vehicle.capacity * _vehicle.travelingSpeed).ToString("0.##");
+        outputText.text = ((_label) ? "Output: " : "") + (_vehicle.capacity * _vehicle.travelingSpeed).ToString("0.##");
         outputText.gameObject.SetActive(_showOutput);
     }
 }

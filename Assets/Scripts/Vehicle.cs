@@ -9,7 +9,7 @@ namespace BarNerdGames.Transport
         public VehicleData data;
         [SerializeField] public float LocationThreshold;
 
-        public Town homeTown; // should not be null
+        public Location homeTown; // should not be null
         public Route route; // can be null
         private Route.TravelingDirection travelingDirection;
         private Vector2 direction;
@@ -32,12 +32,6 @@ namespace BarNerdGames.Transport
             resources = new List<Resource>();
 
             currentState = State.Parked;
-        }
-
-        // Start is called before the first frame update
-        void Start()
-        {
-
         }
 
         // Update is called once per frame
