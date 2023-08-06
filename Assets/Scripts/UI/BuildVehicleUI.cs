@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using BarNerdGames.Transport;
 
 public class BuildVehicleUI : MonoBehaviour
@@ -11,6 +12,10 @@ public class BuildVehicleUI : MonoBehaviour
 
     [SerializeField] private Transform vehiclesParent;
     [SerializeField] private GameObject vehicleUIPrefab;
+
+    [SerializeField] private ToggleGroup toggleGroup;
+
+    [SerializeField] private LocationDetailsUI locationDetailsUI;
 
     void Awake()
     {
@@ -40,11 +45,23 @@ public class BuildVehicleUI : MonoBehaviour
 
         GameObject _newVehicle = Instantiate(vehicleUIPrefab, vehiclesParent);
         _newVehicle.GetComponent<VehicleUI>().SetText(_new, true, false);
+
+        // Set Toggle group
+        _newVehicle.GetComponent<Toggle>().group = toggleGroup;
     }
 
-    public void Cancel()
+    public void BuildVehicle()
     {
-        // TODO: remove selected
+        // TODO: is GetFirstActiveToggle correct here?
+        VehicleData _vehicle = toggleGroup.GetFirstActiveToggle().GetComponent<VehicleUI>().VehicleData;
+        locationDetailsUI.BuildVehicle(_vehicle);
+
+        Close();
+    }
+
+    public void Close()
+    {
+        toggleGroup.SetAllTogglesOff();
         ShowUIPanel(false);
     }
 }

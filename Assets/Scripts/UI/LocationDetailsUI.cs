@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 using BarNerdGames.Transport;
 
@@ -16,6 +17,8 @@ public class LocationDetailsUI : MonoBehaviour
 
     [Space(10)]
     [SerializeField] private GameObject vehiclesHeader;
+    [SerializeField] private ToggleGroup routesToggleGroup;
+    [SerializeField] private ToggleGroup vehiclesToggleGroup;
 
     [Header("Parents")]
     [SerializeField] private Transform routesParent;
@@ -82,6 +85,9 @@ public class LocationDetailsUI : MonoBehaviour
         {
             GameObject _newVehicle = Instantiate(vehicleUIPrefab, vehiclesParent);
             _newVehicle.GetComponent<VehicleUI>().SetText(_vehicle.data);
+
+            // Set Toggle group
+            _newVehicle.GetComponent<Toggle>().group = vehiclesToggleGroup;
         }
     }
 
@@ -112,11 +118,8 @@ public class LocationDetailsUI : MonoBehaviour
         routeStart = null;
     }
 
-    public void CreateVehicle(VehicleData _vehicle)
+    public void BuildVehicle(VehicleData _vehicle)
     {
-        // TODO: Create BuildVehiclesUI
-        // TODO: which has a list of available vehicles
-        // TODO: Have it pass the VehicleData to currentLocation, via this functions
         currentLocation.BuildVehicle(_vehicle);
     }
 }

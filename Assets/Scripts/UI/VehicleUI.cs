@@ -9,20 +9,12 @@ public class VehicleUI : MonoBehaviour
     [SerializeField] private TMP_Text speedText;
     [SerializeField] private TMP_Text outputText;
 
-    [SerializeField] public bool Selected { get; private set; }
-
-    public void SetSelected(bool _selected = true)
-    {
-        if (Selected != _selected)
-        {
-            Selected = _selected;
-            // TODO: change graphics to highlighted
-            // TODO: Let BuildVehiclesUI know I'm selected
-        }
-    }
+    public VehicleData VehicleData { get; private set; }
 
     public void SetText(VehicleData _vehicle, bool _label = false, bool _showOutput = true)
     {
+        VehicleData = _vehicle;
+
         SetName(_vehicle);
         SetCapacity(_vehicle, _label);
         SetSpeed(_vehicle, _label);
