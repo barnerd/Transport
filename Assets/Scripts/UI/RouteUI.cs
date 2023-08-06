@@ -7,8 +7,12 @@ public class RouteUI : MonoBehaviour
     [SerializeField] private TMP_Text levelText;
     [SerializeField] private TMP_Text destinationText;
 
+    public Route Route { get; private set; }
+
     public void SetText(Route _route)
     {
+        Route = _route;
+
         SetLevel(_route);
         SetDestination(_route);
     }

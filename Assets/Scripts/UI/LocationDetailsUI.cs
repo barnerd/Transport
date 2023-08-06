@@ -64,6 +64,10 @@ public class LocationDetailsUI : MonoBehaviour
         {
             GameObject _newRoute = Instantiate(routeUIPrefab, routesParent);
             _newRoute.GetComponent<RouteUI>().SetText(_route);
+
+
+            // Set Toggle group
+            _newRoute.GetComponent<Toggle>().group = routesToggleGroup;
         }
     }
 
@@ -84,7 +88,7 @@ public class LocationDetailsUI : MonoBehaviour
         foreach (var _vehicle in currentLocation.vehicles)
         {
             GameObject _newVehicle = Instantiate(vehicleUIPrefab, vehiclesParent);
-            _newVehicle.GetComponent<VehicleUI>().SetText(_vehicle.data);
+            _newVehicle.GetComponent<VehicleUI>().SetText(_vehicle);
 
             // Set Toggle group
             _newVehicle.GetComponent<Toggle>().group = vehiclesToggleGroup;
@@ -121,5 +125,21 @@ public class LocationDetailsUI : MonoBehaviour
     public void BuildVehicle(VehicleData _vehicle)
     {
         currentLocation.BuildVehicle(_vehicle);
+        UpdateVehiclesDetails();
+    }
+
+    public void AssignVehicleToRoute()
+    {
+        // TODO: is GetFirstActiveToggle correct here?
+
+        // Get Route
+        Route _route = routesToggleGroup.GetFirstActiveToggle().GetComponent<RouteUI>().Route;
+
+        // Get Vehicle
+        Vehicle _vehicle = vehiclesToggleGroup.GetFirstActiveToggle().GetComponent<VehicleUI>().Vehicle;
+
+        // Assign Vehicle to Route
+        _vehicle.SetRoute(_route);
+        _route.AddVehicle(_vehicle);
     }
 }

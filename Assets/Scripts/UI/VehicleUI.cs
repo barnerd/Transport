@@ -9,7 +9,14 @@ public class VehicleUI : MonoBehaviour
     [SerializeField] private TMP_Text speedText;
     [SerializeField] private TMP_Text outputText;
 
+    public Vehicle Vehicle { get; private set; }
     public VehicleData VehicleData { get; private set; }
+
+    public void SetText(Vehicle _vehicle, bool _label = false, bool _showOutput = true)
+    {
+        Vehicle = _vehicle;
+        SetText(_vehicle.data, _label, _showOutput);
+    }
 
     public void SetText(VehicleData _vehicle, bool _label = false, bool _showOutput = true)
     {
