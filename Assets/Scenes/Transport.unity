@@ -897,6 +897,78 @@ PrefabInstance:
       propertyPath: m_text
       value: Sawmill
       objectReference: {fileID: 0}
+    - target: {fileID: 4168648799824265265, guid: 8f6826435b66d48d5b4d841370969067, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4168648799824265265, guid: 8f6826435b66d48d5b4d841370969067, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4168648799824265265, guid: 8f6826435b66d48d5b4d841370969067, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4168648799824265265, guid: 8f6826435b66d48d5b4d841370969067, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4168648799824265265, guid: 8f6826435b66d48d5b4d841370969067, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4168648799824265265, guid: 8f6826435b66d48d5b4d841370969067, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5193806559919876353, guid: 8f6826435b66d48d5b4d841370969067, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5193806559919876353, guid: 8f6826435b66d48d5b4d841370969067, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5193806559919876353, guid: 8f6826435b66d48d5b4d841370969067, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5193806559919876353, guid: 8f6826435b66d48d5b4d841370969067, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5193806559919876353, guid: 8f6826435b66d48d5b4d841370969067, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5193806559919876353, guid: 8f6826435b66d48d5b4d841370969067, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5992974245960459620, guid: 8f6826435b66d48d5b4d841370969067, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5992974245960459620, guid: 8f6826435b66d48d5b4d841370969067, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5992974245960459620, guid: 8f6826435b66d48d5b4d841370969067, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5992974245960459620, guid: 8f6826435b66d48d5b4d841370969067, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5992974245960459620, guid: 8f6826435b66d48d5b4d841370969067, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5992974245960459620, guid: 8f6826435b66d48d5b4d841370969067, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6268115779314531582, guid: 8f6826435b66d48d5b4d841370969067, type: 3}
       propertyPath: m_Name
       value: Sawmill A
@@ -925,6 +997,30 @@ PrefabInstance:
       propertyPath: producedResources._serializedList.Array.data[0].Key
       value: 
       objectReference: {fileID: 11400000, guid: ed988b3c0f8304a5fbcd61598a914d02, type: 2}
+    - target: {fileID: 8430955969803789774, guid: 8f6826435b66d48d5b4d841370969067, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8430955969803789774, guid: 8f6826435b66d48d5b4d841370969067, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8430955969803789774, guid: 8f6826435b66d48d5b4d841370969067, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8430955969803789774, guid: 8f6826435b66d48d5b4d841370969067, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8430955969803789774, guid: 8f6826435b66d48d5b4d841370969067, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8430955969803789774, guid: 8f6826435b66d48d5b4d841370969067, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2762,6 +2858,78 @@ PrefabInstance:
       propertyPath: m_text
       value: Stone Quarry
       objectReference: {fileID: 0}
+    - target: {fileID: 4168648799824265265, guid: 8f6826435b66d48d5b4d841370969067, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4168648799824265265, guid: 8f6826435b66d48d5b4d841370969067, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4168648799824265265, guid: 8f6826435b66d48d5b4d841370969067, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4168648799824265265, guid: 8f6826435b66d48d5b4d841370969067, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4168648799824265265, guid: 8f6826435b66d48d5b4d841370969067, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4168648799824265265, guid: 8f6826435b66d48d5b4d841370969067, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5193806559919876353, guid: 8f6826435b66d48d5b4d841370969067, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5193806559919876353, guid: 8f6826435b66d48d5b4d841370969067, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5193806559919876353, guid: 8f6826435b66d48d5b4d841370969067, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5193806559919876353, guid: 8f6826435b66d48d5b4d841370969067, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5193806559919876353, guid: 8f6826435b66d48d5b4d841370969067, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5193806559919876353, guid: 8f6826435b66d48d5b4d841370969067, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5992974245960459620, guid: 8f6826435b66d48d5b4d841370969067, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5992974245960459620, guid: 8f6826435b66d48d5b4d841370969067, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5992974245960459620, guid: 8f6826435b66d48d5b4d841370969067, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5992974245960459620, guid: 8f6826435b66d48d5b4d841370969067, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5992974245960459620, guid: 8f6826435b66d48d5b4d841370969067, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5992974245960459620, guid: 8f6826435b66d48d5b4d841370969067, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6268115779314531582, guid: 8f6826435b66d48d5b4d841370969067, type: 3}
       propertyPath: m_Name
       value: Stone Quarry
@@ -2802,6 +2970,30 @@ PrefabInstance:
       propertyPath: producedResources._serializedList.Array.data[0].Key
       value: 
       objectReference: {fileID: 11400000, guid: 81b823d23784047e9b60bb3929b0294d, type: 2}
+    - target: {fileID: 8430955969803789774, guid: 8f6826435b66d48d5b4d841370969067, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8430955969803789774, guid: 8f6826435b66d48d5b4d841370969067, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8430955969803789774, guid: 8f6826435b66d48d5b4d841370969067, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8430955969803789774, guid: 8f6826435b66d48d5b4d841370969067, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8430955969803789774, guid: 8f6826435b66d48d5b4d841370969067, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8430955969803789774, guid: 8f6826435b66d48d5b4d841370969067, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
