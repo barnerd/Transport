@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: Cart
   m_EditorClassIdentifier: 
   name: Cart
-  capacity: 5
+  capacity: 3
   travelingSpeed: 1
   loadingSpeed: 1
   unloadingSpeed: 1
+  resourceCost:
+    _serializedList: []
