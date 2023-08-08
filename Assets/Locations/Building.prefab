@@ -296,7 +296,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 56619475563190618}
-  - component: {fileID: 6918048155013949700}
+  - component: {fileID: 204749778929936931}
   - component: {fileID: 250010125565476882}
   m_Layer: 7
   m_Name: Building
@@ -324,7 +324,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6918048155013949700
+--- !u!114 &204749778929936931
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -333,7 +333,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6268115779314531582}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef285e8ce612946bda145f89119c5dd5, type: 3}
+  m_Script: {fileID: 11500000, guid: e53efffba50d34aafa52777c5eabc9a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   desiredResources:
@@ -341,7 +341,7 @@ MonoBehaviour:
   storedResources:
     _serializedList: []
   producingResources: []
-  capacity: 50
+  capacity: 10
   routesParent: {fileID: 309448810837732773}
   routes: []
   vehiclesParent: {fileID: 2216167675033825279}
