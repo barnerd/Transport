@@ -7,7 +7,7 @@ namespace BarNerdGames.Transport
     public class Vehicle : MonoBehaviour
     {
         public VehicleData data;
-        [SerializeField] public float LocationThreshold;
+        [SerializeField] private float LocationThreshold;
 
         public Location homeTown; // should not be null
         public Route route; // can be null
@@ -16,6 +16,8 @@ namespace BarNerdGames.Transport
         private RoadSegment currentSegement;
         private Location currentLocation; // can be null
         public State currentState;
+
+        private float timer;
 
         public enum State
         {
@@ -26,6 +28,7 @@ namespace BarNerdGames.Transport
         }
 
         private List<Resource> resources;
+        [SerializeField] private ResourceContainer resourceContainer;
 
         void Awake()
         {
@@ -89,20 +92,28 @@ namespace BarNerdGames.Transport
         /// </summary>
         private void UnloadResource()
         {
-            Debug.Log("Unloading resources");
-            // TODO: add timer so it's 1 per timer
-
-            // Deliver Resources if possible
-            foreach (Resource resource in resources)
+            // TODO: Figure out how to not wait for the timer if there's nothing to unload
+            if (Time.time > timer)
             {
-                if (currentLocation.UnloadResource(resource))
-                {
-                    resources.Remove(resource);
-                    return;
-                }
-            }
+                Debug.Log("Unloading resources");
 
-            currentState = State.Loading;
+                // Deliver Resources if possible
+                foreach (Resource resource in resources)
+                {
+                    if (currentLocation.UnloadResource(resource))
+                    {
+                        resources.Remove(resource);
+
+                        resourceContainer.RefreshGraphics(resources);
+
+                        timer = Time.time + data.unloadingSpeed;
+                        return;
+                    }
+                }
+
+                currentState = State.Loading;
+                timer = Time.time + data.loadingSpeed;
+            }
         }
 
         /// <summary>
@@ -110,26 +121,33 @@ namespace BarNerdGames.Transport
         /// </summary>
         private void LoadResource()
         {
-            Debug.Log("Loading resources");
-            // TODO: add timer so it's 1 per timer
-
-            // Collect Resources if possible
-            if (resources.Count < data.capacity)
+            // TODO: Figure out how to not wait for the timer if there's nothing to load
+            if (Time.time > timer)
             {
-                Location target = (currentLocation == route.start) ? route.end : route.start;
-                Resource collectedResource = currentLocation.LoadResource(new List<Resource>(target.desiredResources.Keys));
-                if (collectedResource != null)
+                Debug.Log("Loading resources");
+
+                // Collect Resources if possible
+                if (resources.Count < data.capacity)
                 {
-                    resources.Add(collectedResource);
+                    Location target = (currentLocation == route.start) ? route.end : route.start;
+                    Resource collectedResource = currentLocation.LoadResource(new List<Resource>(target.desiredResources.Keys));
+                    if (collectedResource != null)
+                    {
+                        resources.Add(collectedResource);
+
+                        resourceContainer.RefreshGraphics(resources);
+
+                        timer = Time.time + data.loadingSpeed;
+                    }
+                    else
+                    {
+                        currentState = State.Moving;
+                    }
                 }
                 else
                 {
                     currentState = State.Moving;
                 }
-            }
-            else
-            {
-                currentState = State.Moving;
             }
         }
 
@@ -141,6 +159,7 @@ namespace BarNerdGames.Transport
             // TODO: this is a hack. SetRoute should be called by now
             if (currentSegement == null && route != null)
             {
+                Debug.LogError("SetRoute being called because it's not set before Move()");
                 SetRoute(route);
             }
 
@@ -161,6 +180,7 @@ namespace BarNerdGames.Transport
                     SetDirection();
 
                     currentState = State.Unloading;
+                    timer = Time.time + data.unloadingSpeed;
                     return;
                 }
                 else
@@ -171,7 +191,7 @@ namespace BarNerdGames.Transport
             }
 
             // move in that direction f(vehicle.movingSpeed, road.movingSpeed)
-            transform.position += data.travelingSpeed * Time.deltaTime * (Vector3)direction;
+            transform.localPosition += data.travelingSpeed * Time.deltaTime * (Vector3)direction.normalized;
         }
 
         /// <summary>
@@ -180,7 +200,7 @@ namespace BarNerdGames.Transport
         private void SetDirection()
         {
             direction = currentSegement.Direction * (int)travelingDirection;
-            transform.rotation = Quaternion.Euler(0f, 0f, Vector2.SignedAngle(Vector2.right, direction));
+            transform.localRotation = Quaternion.Euler(0f, 0f, Vector2.SignedAngle(Vector2.right, direction));
         }
     }
 }

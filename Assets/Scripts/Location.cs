@@ -6,12 +6,17 @@ using AYellowpaper.SerializedCollections;
 
 namespace BarNerdGames.Transport
 {
+    /// <summary>
+    /// A Location on the Map for producing/storing resources. i.e. town, building
+    /// </summary>
     public class Location : MonoBehaviour
     {
         [Header("Resources")]
+        public Transform resourcesParent;
         [SerializedDictionary("Resource", "Amount")] public SerializedDictionary<Resource, int> desiredResources;
         [SerializedDictionary("Resource", "Amount")] public SerializedDictionary<Resource, float> storedResources;
         public List<Resource> producingResources;
+        [SerializeField] private ResourceContainer resourceContainer;
 
         [SerializeField] protected int capacity;
 
@@ -29,6 +34,7 @@ namespace BarNerdGames.Transport
         [Header("Prefabs")]
         [SerializeField] private GameObject routePrefab;
         [SerializeField] private GameObject vehiclePrefab;
+        [SerializeField] private GameObject resourcePrefab;
 
         public static bool RouteBuilding;
 
@@ -40,6 +46,12 @@ namespace BarNerdGames.Transport
 
             if (routes == null) routes = new List<Route>();
             if (vehicles == null) vehicles = new List<Vehicle>();
+        }
+
+        // Start is called before the first frame update
+        void Start()
+        {
+            resourceContainer.RefreshGraphics(storedResources);
         }
 
         // Update is called once per frame
@@ -71,11 +83,21 @@ namespace BarNerdGames.Transport
         {
             foreach (var _resource in producingResources)
             {
-                storedResources[_resource] += _resource.generationRate * Time.deltaTime;
-
-                if (storedResources[_resource] > capacity)
+                if (!storedResources.ContainsKey(_resource))
                 {
-                    storedResources[_resource] = capacity;
+                    storedResources.Add(_resource, 0f);
+                }
+
+                //if (Mathf.Abs(storedResources[_resource] - capacity) < float.Epsilon)
+                {
+                    storedResources[_resource] += _resource.generationRate * Time.deltaTime;
+
+                    if (storedResources[_resource] > capacity)
+                    {
+                        storedResources[_resource] = capacity;
+                    }
+
+                    resourceContainer.RefreshGraphics(storedResources);
                 }
             }
         }
@@ -93,10 +115,10 @@ namespace BarNerdGames.Transport
 
             _route.SetEndPoints(this, _end);
 
-            // TODO: check for resources for route cost
             var _resourceCost = _route.CurrentRoadLevel.resourceCost;
             float _numUnits = _route.Length;
             bool _haveCosts = CheckCosts(_resourceCost, _numUnits);
+            // TODO: spend resources for route cost
 
             // add to this Location's set of routes
             routes.Add(_route);
@@ -140,7 +162,7 @@ namespace BarNerdGames.Transport
         {
             foreach (var _resource in _costsPerUnit.Keys.ToList())
             {
-                if (storedResources[_resource] < Mathf.RoundToInt(_costsPerUnit[_resource] * _numUnits))
+                if (!storedResources.ContainsKey(_resource) || storedResources[_resource] < Mathf.RoundToInt(_costsPerUnit[_resource] * _numUnits))
                 {
                     return false;
                 }
@@ -158,7 +180,10 @@ namespace BarNerdGames.Transport
         {
             foreach (var _resource in _costsPerUnit.Keys.ToList())
             {
-                storedResources[_resource] -= Mathf.RoundToInt(_costsPerUnit[_resource] * _numUnits);
+                int _count = Mathf.RoundToInt(_costsPerUnit[_resource] * _numUnits);
+                storedResources[_resource] -= _count;
+
+                resourceContainer.RefreshGraphics(storedResources);
             }
         }
 
@@ -187,12 +212,16 @@ namespace BarNerdGames.Transport
                     // if I want a finite amount, reduce desire. -1 is infinite desire
                     if (desiredResources[_resource] > 0) desiredResources[_resource]--;
                     storedResources[_resource]++;
+
+                    resourceContainer.RefreshGraphics(storedResources);
                 }
             }
             // first time storing this resource
             else
             {
                 storedResources.Add(_resource, 1);
+
+                resourceContainer.RefreshGraphics(storedResources);
             }
 
             return true;
@@ -205,31 +234,17 @@ namespace BarNerdGames.Transport
         /// <returns>true, if the resource is subtracted; otherwise, false</returns>
         public Resource LoadResource(List<Resource> _desiredResources)
         {
-            if (_desiredResources.Count < storedResources.Count)
+            foreach (Resource _resource in _desiredResources)
             {
-                foreach (var _resource in _desiredResources)
+                if (storedResources.ContainsKey(_resource))
                 {
-                    if (storedResources.ContainsKey(_resource))
+                    if (storedResources[_resource] > 0)
                     {
-                        if (storedResources[_resource] > 0)
-                        {
-                            storedResources[_resource]--;
-                            return _resource;
-                        }
-                    }
-                }
-            }
-            else
-            {
-                foreach (var _resource in storedResources.Keys)
-                {
-                    if (_desiredResources.Contains(_resource))
-                    {
-                        if (storedResources[_resource] > 0)
-                        {
-                            storedResources[_resource]--;
-                            return _resource;
-                        }
+                        storedResources[_resource]--;
+
+                        resourceContainer.RefreshGraphics(storedResources);
+
+                        return _resource;
                     }
                 }
             }
