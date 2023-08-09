@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using AYellowpaper.SerializedCollections;
 
 namespace BarNerdGames.Transport
@@ -65,14 +66,17 @@ namespace BarNerdGames.Transport
 
         void OnMouseDown()
         {
-            if (Location.RouteBuilding)
+            if (!EventSystem.current.IsPointerOverGameObject())
             {
-                detailsUI.FinishRoute(this);
-            }
-            else
-            {
-                detailsUI.UpdateLocationDetails(this);
-                detailsUI.ShowUIPanel(true);
+                if (Location.RouteBuilding)
+                {
+                    detailsUI.FinishRoute(this);
+                }
+                else
+                {
+                    detailsUI.UpdateLocationDetails(this);
+                    detailsUI.ShowUIPanel(true);
+                }
             }
         }
 
