@@ -2171,7 +2171,6 @@ MonoBehaviour:
   uiPanel: {fileID: 586460976}
   availableVehicles:
   - {fileID: 11400000, guid: d4dcc78a8e803468fa5aaa3d9023d2a4, type: 2}
-  - {fileID: 11400000, guid: d4dcc78a8e803468fa5aaa3d9023d2a4, type: 2}
   vehiclesParent: {fileID: 973267039}
   vehicleUIPrefab: {fileID: 8468222705798944413, guid: eb324b1af07164017b125c6ddcbfea40, type: 3}
   toggleGroup: {fileID: 973267041}
