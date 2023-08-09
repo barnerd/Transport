@@ -22,15 +22,12 @@ namespace BarNerdGames.Transport
         [SerializeField] public RoadLevelData BaseLevel;
         [SerializeField] public RoadLevelData CurrentRoadLevel { get; private set; }
 
-        private List<GameObject> roadSegments;
-
         [SerializeField] private GameObject roadTile;
 
         private List<Vehicle> vehicles;
 
         private void Awake()
         {
-            roadSegments = new List<GameObject>();
             vehicles = new List<Vehicle>();
 
             CurrentRoadLevel = BaseLevel;
@@ -58,22 +55,31 @@ namespace BarNerdGames.Transport
             end = _end;
 
             Road = new Road(start.transform.position, end.transform.position);
-            InitRoadSegments();
+            UpdateLineRenderer();
         }
 
         /// <summary>
         /// Create the graphics for the road segements
         /// </summary>
-        private void InitRoadSegments()
+        private void UpdateLineRenderer()
         {
             RoadSegment _segment = Road.Start;
 
+            GameObject roadGFX = Instantiate(roadTile, transform);
+            LineRenderer roadLineRenderer = roadGFX.GetComponent<LineRenderer>();
+
+            roadLineRenderer.positionCount = 0;
+
             while (_segment != null)
             {
-                GameObject roadSegmentGFX = Instantiate(roadTile, _segment.Midpoint, Quaternion.Euler(0f, 0f, Vector2.SignedAngle(Vector2.right, _segment.Direction)), this.transform);
-                roadSegmentGFX.transform.localScale = new Vector3(_segment.Length, roadSegmentGFX.transform.localScale.y, roadSegmentGFX.transform.localScale.z);
+                roadLineRenderer.positionCount++;
+                roadLineRenderer.SetPosition(roadLineRenderer.positionCount - 1, (Vector3)_segment.Start + new Vector3(0f, 0f, 1f));
 
-                roadSegments.Add(roadSegmentGFX);
+                if(_segment.Next == null)
+                {
+                    roadLineRenderer.positionCount++;
+                    roadLineRenderer.SetPosition(roadLineRenderer.positionCount - 1, new Vector3(_segment.End.x, _segment.End.y, 1f));
+                }
 
                 _segment = _segment.Next;
             }

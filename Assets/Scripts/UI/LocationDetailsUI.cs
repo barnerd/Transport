@@ -101,6 +101,8 @@ public class LocationDetailsUI : MonoBehaviour
         Location.RouteBuilding = true;
         routeStart = currentLocation;
 
+        ShowUIPanel(false);
+
         // TODO: Change "Start Route" button to "Cancel Route" button
 
         // TODO: Have location check for mode
