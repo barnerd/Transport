@@ -1839,6 +1839,18 @@ PrefabInstance:
       propertyPath: detailsUI
       value: 
       objectReference: {fileID: 1218223885}
+    - target: {fileID: 4606381540102127327, guid: 1e764239103b741ffb7b5f2020096a09, type: 3}
+      propertyPath: storedResources._serializedList.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4606381540102127327, guid: 1e764239103b741ffb7b5f2020096a09, type: 3}
+      propertyPath: storedResources._serializedList.Array.data[0].Key
+      value: 
+      objectReference: {fileID: 11400000, guid: ed988b3c0f8304a5fbcd61598a914d02, type: 2}
+    - target: {fileID: 4606381540102127327, guid: 1e764239103b741ffb7b5f2020096a09, type: 3}
+      propertyPath: storedResources._serializedList.Array.data[0].Value
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6268115779314531582, guid: 1e764239103b741ffb7b5f2020096a09, type: 3}
       propertyPath: m_Name
       value: Town A
@@ -2171,6 +2183,7 @@ MonoBehaviour:
   uiPanel: {fileID: 586460976}
   availableVehicles:
   - {fileID: 11400000, guid: d4dcc78a8e803468fa5aaa3d9023d2a4, type: 2}
+  - {fileID: 11400000, guid: d99461f57f605490eb733db85ad052be, type: 2}
   vehiclesParent: {fileID: 973267039}
   vehicleUIPrefab: {fileID: 8468222705798944413, guid: eb324b1af07164017b125c6ddcbfea40, type: 3}
   toggleGroup: {fileID: 973267041}
@@ -3478,7 +3491,7 @@ MonoBehaviour:
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 0
-  m_Spacing: 0
+  m_Spacing: 5
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 0

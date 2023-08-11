@@ -13,7 +13,6 @@ namespace BarNerdGames.Transport
     public class Location : MonoBehaviour
     {
         [Header("Resources")]
-        public Transform resourcesParent;
         [SerializedDictionary("Resource", "Amount")] public SerializedDictionary<Resource, int> desiredResources;
         [SerializedDictionary("Resource", "Amount")] public SerializedDictionary<Resource, float> storedResources;
         public List<Resource> producingResources;

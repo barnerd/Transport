@@ -8,7 +8,7 @@ public class LocationDetailsUI : MonoBehaviour
     [SerializeField] private RectTransform uiPanel;
     [SerializeField] private TMP_Text locationName;
 
-    private Location currentLocation;
+    public Location currentLocation { get; private set; }
     private Location routeStart;
 
     [Header("'None' Text")]

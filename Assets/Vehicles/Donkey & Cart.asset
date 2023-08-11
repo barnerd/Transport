@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f1fc52f9766e043b28f012aac3fab8e3, type: 3}
-  m_Name: Cart
+  m_Name: Donkey & Cart
   m_EditorClassIdentifier: 
-  name: Cart
-  capacity: 1
-  travelingSpeed: 0.75
+  name: Donkey & Cart
+  capacity: 2
+  travelingSpeed: 0.66
   loadingSpeed: 1
   unloadingSpeed: 1
   resourceCost:
     _serializedList:
     - Key: {fileID: 11400000, guid: ed988b3c0f8304a5fbcd61598a914d02, type: 2}
-      Value: 1
+      Value: 2
