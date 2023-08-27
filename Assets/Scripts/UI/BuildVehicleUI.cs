@@ -71,10 +71,13 @@ public class BuildVehicleUI : MonoBehaviour
     public void BuildVehicle()
     {
         // TODO: is GetFirstActiveToggle correct here?
-        VehicleData _vehicle = toggleGroup.GetFirstActiveToggle().GetComponent<VehicleUI>().VehicleData;
-        locationDetailsUI.BuildVehicle(_vehicle);
+        if (toggleGroup.AnyTogglesOn())
+        {
+            VehicleData _vehicle = toggleGroup.GetFirstActiveToggle().GetComponent<VehicleUI>().VehicleData;
+            locationDetailsUI.BuildVehicle(_vehicle);
 
-        Close();
+            Close();
+        }
     }
 
     public void Close()
