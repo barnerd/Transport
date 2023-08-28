@@ -124,7 +124,9 @@ namespace BarNerdGames.Transport
             // TODO: spend resources for route cost
 
             // add to this Location's set of routes
+            // TODO: turn this into a function, so adding routes can be limited to location and maxCount
             routes.Add(_route);
+            _end.routes.Add(_route);
 
             RouteBuilding = false;
         }

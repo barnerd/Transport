@@ -63,7 +63,7 @@ public class LocationDetailsUI : MonoBehaviour
         foreach (var _route in currentLocation.routes)
         {
             GameObject _newRoute = Instantiate(routeUIPrefab, routesParent);
-            _newRoute.GetComponent<RouteUI>().SetText(_route);
+            _newRoute.GetComponent<RouteUI>().SetText(_route, currentLocation);
 
 
             // Set Toggle group
