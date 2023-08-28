@@ -13,7 +13,8 @@ namespace BarNerdGames.Transport
         public Route route; // can be null
         private Route.TravelingDirection travelingDirection;
         private Vector2 direction;
-        private RoadSegment currentSegement;
+        private RoadSegment currentSegment;
+        private float segmentPercent;
         private Location currentLocation; // can be null
         public State currentState;
 
@@ -76,7 +77,7 @@ namespace BarNerdGames.Transport
             travelingDirection = Route.TravelingDirection.Forwards;
             if (_route != null)
             {
-                currentSegement = _route.Road.Start;
+                currentSegment = _route.Road.Start;
                 SetDirection();
                 currentState = State.Moving;
             }
@@ -157,21 +158,20 @@ namespace BarNerdGames.Transport
         private void Move()
         {
             // TODO: this is a hack. SetRoute should be called by now
-            if (currentSegement == null && route != null)
+            if (currentSegment == null && route != null)
             {
                 Debug.LogError("SetRoute being called because it's not set before Move()");
                 SetRoute(route);
             }
 
             // check if at segment end
-            Vector2 segmentEnd = (travelingDirection == Route.TravelingDirection.Forwards) ? currentSegement.End : currentSegement.Start;
-            if (Vector2.Distance(transform.position, segmentEnd) < LocationThreshold)
+            if (segmentPercent > 1f)
             {
                 // go to next segment
-                RoadSegment nextSegement = (travelingDirection == Route.TravelingDirection.Forwards) ? currentSegement.Next : currentSegement.Previous; ;
+                RoadSegment nextSegment = (travelingDirection == Route.TravelingDirection.Forwards) ? currentSegment.Next : currentSegment.Previous; ;
 
                 // finished traversing the route
-                if (nextSegement == null)
+                if (nextSegment == null)
                 {
                     currentLocation = (travelingDirection == Route.TravelingDirection.Forwards) ? route.end : route.start;
 
@@ -185,13 +185,19 @@ namespace BarNerdGames.Transport
                 }
                 else
                 {
-                    currentSegement = nextSegement;
+                    currentSegment = nextSegment;
                     SetDirection();
                 }
             }
+            else
+            {
+                Vector2 segmentStart = (travelingDirection == Route.TravelingDirection.Forwards) ? currentSegment.Start : currentSegment.End;
 
-            // move in that direction f(vehicle.movingSpeed, road.movingSpeed)
-            transform.localPosition += data.travelingSpeed * Time.deltaTime * (Vector3)direction.normalized;
+                // move in that direction f(vehicle.movingSpeed, road.movingSpeed)
+                segmentPercent += data.travelingSpeed * Time.deltaTime / currentSegment.Length;
+                transform.position = segmentStart + segmentPercent * direction.normalized * currentSegment.Length;
+                //transform.localPosition += data.travelingSpeed * Time.deltaTime * (Vector3)direction.normalized;
+            }
         }
 
         /// <summary>
@@ -199,7 +205,8 @@ namespace BarNerdGames.Transport
         /// </summary>
         private void SetDirection()
         {
-            direction = currentSegement.Direction * (int)travelingDirection;
+            segmentPercent = 0f;
+            direction = currentSegment.Direction * (int)travelingDirection;
             transform.localRotation = Quaternion.Euler(0f, 0f, Vector2.SignedAngle(Vector2.right, direction));
         }
     }
